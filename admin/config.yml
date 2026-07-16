@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: ko
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+site_url: "https://라온채.kr"
+display_url: "https://라온채.kr"
+logo_url: "/assets/traditional-games.jpg"
+
+collections:
+  - name: "site"
+    label: "홈페이지 관리"
+    files:
+      - name: "settings"
+        label: "사진 · 폰트 · 팝업"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - label: "본문 폰트"
+            name: "bodyFont"
+            widget: "select"
+            options:
+              - { label: "깔끔한 고딕", value: "noto" }
+              - { label: "고운바탕", value: "gowun" }
+              - { label: "나눔명조", value: "myeongjo" }
+              - { label: "궁서체", value: "gungseo" }
+          - label: "제목 폰트"
+            name: "titleFont"
+            widget: "select"
+            options:
+              - { label: "궁서체", value: "gungseo" }
+              - { label: "고운바탕", value: "gowun" }
+              - { label: "나눔명조", value: "myeongjo" }
+              - { label: "깔끔한 고딕", value: "noto" }
+          - label: "팝업"
+            name: "popup"
+            widget: "object"
+            fields:
+              - { label: "팝업 사용", name: "enabled", widget: "boolean", default: false }
+              - { label: "팝업 제목", name: "title", widget: "string", required: false }
+              - { label: "팝업 내용", name: "text", widget: "text", required: false }
+              - { label: "버튼 문구", name: "linkText", widget: "string", required: false }
+              - { label: "버튼 링크", name: "linkUrl", widget: "string", required: false }
+          - label: "사진 관리"
+            name: "images"
+            widget: "list"
+            summary: "{{fields.name}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "사진 이름", name: "name", widget: "string" }
+              - { label: "사진 파일", name: "image", widget: "image" }

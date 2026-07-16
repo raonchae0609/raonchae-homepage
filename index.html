@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="아산 탕정의 고즈넉한 한옥 독채 스테이 라온채" name="description"/>
+<title>라온채 | RAONCHAE HANOK STAY</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&amp;family=Nanum+Myeongjo:wght@400;700&amp;family=Noto+Sans+KR:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--paper:#fcfbf8;--ink:#4b433c;--muted:#948980;--accent:#a78d75;--line:#ece7df}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans KR",sans-serif;line-height:1.8}
+a{color:inherit;text-decoration:none}button{font:inherit}
+header{height:108px;display:flex;justify-content:space-between;align-items:center;max-width:1160px;margin:auto;padding:0 32px}
+.brand{display:flex;gap:12px;align-items:center;color:#8f7560}
+.mark{width:44px;height:44px;display:grid;place-items:center;border:1px solid #baa995;font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-size:1.3rem}
+.brand span:last-child{display:flex;flex-direction:column;line-height:1.2}
+.brand strong{font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em}
+.brand small{font-size:.55rem;letter-spacing:.18em;margin-top:5px}
+.menu{width:34px;height:34px;border:0;background:none;padding:7px}
+.menu i{display:block;height:1px;background:#777068;margin:5px 0}
+.intro{padding:62px 20px 95px;text-align:center}
+.intro .small{font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;color:#94877d;font-size:.95rem}
+.intro h1{font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-size:clamp(1.7rem,2.7vw,2.85rem);font-weight:400;line-height:1.55;margin:20px 0}
+.intro p{font-family:"Nanum Myeongjo",serif;color:#8f857c;font-size:1rem;line-height:1.95;margin:0}
+.main-grid{width:min(930px,calc(100% - 40px));margin:0 auto 115px;display:grid;grid-template-columns:1fr 1fr;gap:24px 68px}
+.main-card{position:relative;overflow:hidden;border-radius:7px}
+.main-card img{width:100%;height:100%;object-fit:cover;display:block}
+.main-card:first-child{aspect-ratio:1/1}
+.main-card:last-child{aspect-ratio:1/1}
+
+.caption div{text-align:center}
+.about{padding:110px 20px;border-top:1px solid var(--line);text-align:center}
+.about h2,.reserve h2{font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-weight:400;font-size:clamp(1.8rem,3.3vw,3.25rem);line-height:1.5;margin:0 0 28px}
+.about p{max-width:620px;margin:auto;color:#837a72;font-family:"Nanum Myeongjo",serif}
+.gallery-wrap{width:min(930px,calc(100% - 40px));margin:0 auto;padding:20px 0 125px}
+.gallery-title{text-align:center;margin-bottom:58px}
+.gallery-title p{font-size:.72rem;letter-spacing:.25em;color:#a08b78}
+.gallery-title h2{font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-size:clamp(1.65rem,3vw,2.75rem);font-weight:400;margin:10px 0 0}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:22px 68px}
+.gallery-card{position:relative;border:0;background:none;padding:0;overflow:hidden;border-radius:7px;cursor:pointer}
+.gallery-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:.55s}
+.gallery-card:hover img{transform:scale(1.025)}
+.gallery-card span{display:none}
+
+.info{width:min(900px,calc(100% - 40px));margin:0 auto 115px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.info div{padding:28px 8px;text-align:center;border-right:1px solid var(--line)}
+.info div:last-child{border-right:0}
+.info b{display:block;font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-size:1.12rem;font-weight:400;margin-bottom:6px}
+.info span{font-size:.73rem;color:#9d948b}
+.reserve{background:#eee8df;text-align:center;padding:95px 20px}
+.reserve p{color:#8b827a;font-size:.9rem}
+.actions{display:flex;justify-content:center;gap:12px;margin-top:28px}
+.actions a{padding:12px 22px;border:1px solid #9d9185;font-family:"Gungsuh","궁서","Nanum Myeongjo",serif}
+.actions a:first-child{background:#5f554d;color:#fff;border-color:#5f554d}
+footer{padding:42px 20px;text-align:center;font-size:.72rem;color:#9b928a}
+.lightbox{position:fixed;inset:0;z-index:60;background:rgba(25,22,20,.94);display:none;place-items:center;padding:5vw}
+.lightbox.open{display:grid}
+.lightbox img{max-width:90vw;max-height:88vh;object-fit:contain}
+.lightbox button{position:absolute;top:18px;right:24px;border:0;background:none;color:#fff;font-size:2.3rem}
+.reveal{opacity:0;transform:translateY(20px);transition:.8s}
+.reveal.show{opacity:1;transform:none}
+@media(max-width:700px){
+  header{height:88px;padding:0 20px}
+  .intro{padding:45px 18px 70px}
+  .main-grid,.gallery{gap:12px}
+  .main-grid,.gallery-wrap{width:calc(100% - 24px)}
+  
+  .main-card,.gallery-card{border-radius:4px}
+  .info{grid-template-columns:1fr 1fr}
+  .info div:nth-child(2){border-right:0}
+  .info div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .actions{flex-direction:column;max-width:260px;margin:25px auto 0}
+}
+
+.location{
+  padding:110px 20px 120px;
+  border-top:1px solid var(--line);
+}
+.location-inner{
+  width:min(930px,calc(100% - 40px));
+  margin:0 auto;
+}
+.location-heading{
+  text-align:center;
+  margin-bottom:54px;
+}
+.location-heading p{
+  font-size:.72rem;
+  letter-spacing:.25em;
+  color:#a08b78;
+  margin:0 0 10px;
+}
+.location-heading h2{
+  font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;
+  font-size:clamp(1.8rem,3.2vw,2.9rem);
+  font-weight:400;
+  margin:0;
+}
+.location-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:42px;
+  align-items:stretch;
+}
+.map-card{
+  background:#f0ebe4;
+  border:1px solid var(--line);
+  padding:18px;
+}
+.map-card svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.location-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:18px 0;
+}
+.location-info .label{
+  font-size:.72rem;
+  letter-spacing:.2em;
+  color:#9a8878;
+  margin-bottom:12px;
+}
+.location-info h3{
+  font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;
+  font-size:1.55rem;
+  font-weight:400;
+  line-height:1.6;
+  margin:0 0 22px;
+}
+.location-info p{
+  color:#827970;
+  margin:0 0 8px;
+  font-size:.92rem;
+}
+.map-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+.map-actions a{
+  border:1px solid #9f9286;
+  padding:11px 18px;
+  font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;
+  font-size:.92rem;
+}
+.map-actions a:first-child{
+  background:#5f554d;
+  color:#fff;
+  border-color:#5f554d;
+}
+@media(max-width:700px){
+  .location{padding:85px 12px 95px}
+  .location-inner{width:100%}
+  .location-grid{grid-template-columns:1fr;gap:24px}
+  .location-info{padding:4px 6px}
+  .map-actions{flex-direction:column}
+  .map-actions a{text-align:center}
+}
+
+
+.sidepanel{position:fixed;top:0;right:-340px;width:320px;max-width:85vw;height:100vh;background:#fcfbf8;z-index:999;transition:.35s;padding:40px 30px;box-shadow:-10px 0 30px rgba(0,0,0,.12)}
+.sidepanel.open{right:0}
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s;z-index:998}
+.menu-overlay.open{opacity:1;pointer-events:auto}
+.sidepanel h3{font-family:"Gungsuh","궁서",serif;font-weight:400;font-size:1.8rem;margin:0}
+.sidepanel .mini{font-size:.7rem;letter-spacing:.2em;color:#8a7d72;margin-bottom:30px}
+.sidepanel a{display:block;padding:14px 0;border-bottom:1px solid #ece7df}
+.sidepanel .footer{position:absolute;bottom:40px;left:30px;right:30px;font-size:.85rem;color:#7c726a}
+
+.category-page{
+  position:fixed; inset:0; z-index:1200;
+  background:#fcfbf8; overflow-y:auto;
+  opacity:0; pointer-events:none; transform:translateX(24px);
+  transition:opacity .32s ease,transform .32s ease;
+}
+.category-page.open{opacity:1;pointer-events:auto;transform:none}
+.category-top{
+  position:sticky;top:0;z-index:3;height:88px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 30px;background:rgba(252,251,248,.95);
+  backdrop-filter:blur(12px);border-bottom:1px solid #ece7df;
+}
+.category-brand{display:flex;align-items:center;gap:12px;color:#8f7560}
+.category-brand .mark{flex:0 0 auto}
+.category-top h2{
+  font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;
+  font-size:1.4rem;font-weight:400;margin:0;letter-spacing:.06em;
+}
+.category-close{
+  width:40px;height:40px;border:0;background:none;
+  font-size:2rem;line-height:1;color:#6f665f;cursor:pointer;
+}
+.category-intro{padding:70px 20px 55px;text-align:center}
+.category-intro .small{
+  font-size:.7rem;letter-spacing:.24em;color:#a08b78;margin-bottom:12px;
+}
+.category-intro h3{
+  font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;
+  font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;margin:0;
+}
+.category-gallery{
+  width:min(930px,calc(100% - 40px));margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:22px 68px;
+  padding:0 0 110px;
+}
+.category-card{border:0;background:none;padding:0;overflow:hidden;border-radius:7px;cursor:pointer}
+.category-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:.55s}
+.category-card:hover img{transform:scale(1.025)}
+.special-heading{
+  grid-column:1/-1;text-align:center;
+  font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;
+  font-size:1.45rem;font-weight:400;margin:15px 0 5px;color:#6f6156;
+}
+@media(max-width:700px){
+  .category-top{height:76px;padding:0 18px}
+  .category-gallery{width:calc(100% - 24px);gap:12px;padding-bottom:80px}
+  .category-card{border-radius:4px}
+  .category-intro{padding:50px 18px 40px}
+}
+
+
+header{position:relative}
+.brand-hanja{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:block;
+  font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;
+  font-size:1.65rem;
+  font-weight:400;
+  letter-spacing:.18em;
+  color:#806b59;
+  white-space:nowrap;
+}
+.menu{margin-left:auto;cursor:pointer}
+
+/* 카테고리 화면 위에서도 우측 메뉴가 열리도록 순서 조정 */
+.category-page{z-index:900}
+.menu-overlay{z-index:998}
+.sidepanel{z-index:999}
+
+/* 카테고리 상단의 메뉴 버튼 */
+.category-menu{
+  width:40px;
+  height:40px;
+  border:0;
+  background:none;
+  padding:8px;
+  cursor:pointer;
+}
+.category-menu i{
+  display:block;
+  height:1px;
+  background:#777068;
+  margin:6px 0;
+}
+.category-home{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#8f7560;
+  text-decoration:none;
+}
+@media(max-width:700px){
+  .brand-hanja{font-size:1.45rem}
+}
+
+
+.brand-hanja{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+.brand-hanja span{display:inline-block}
+.hanok-logo-icon{
+  width:42px;
+  height:auto;
+  color:#806b59;
+  flex:0 0 auto;
+}
+.site-contact-footer{
+  background:#f7f4ee;
+  border-top:1px solid #e6dfd5;
+  padding:38px 20px 42px;
+  text-align:center;
+  color:#6f655d;
+}
+.site-contact-footer .address-line{
+  font-size:.92rem;
+  line-height:1.9;
+  letter-spacing:.02em;
+}
+.site-contact-footer .phone{
+  margin-top:10px;
+  font-size:1rem;
+  letter-spacing:.08em;
+}
+.site-contact-footer .instagram-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  margin-top:18px;
+  border:1px solid #b9aa9c;
+  border-radius:50%;
+  color:#806b59;
+  text-decoration:none;
+  transition:.25s ease;
+}
+.site-contact-footer .instagram-link:hover{
+  background:#806b59;
+  color:#fff;
+}
+.site-contact-footer .instagram-link svg{
+  width:21px;
+  height:21px;
+}
+@media(max-width:700px){
+  .brand-hanja{gap:8px}
+  .hanok-logo-icon{width:34px}
+  .site-contact-footer{padding:30px 16px 34px}
+  .site-contact-footer .address-line{font-size:.84rem}
+}
+
+
+.hanok-logo-icon{
+  width:58px !important;
+  height:auto;
+  color:#806b59;
+}
+.site-contact-footer .instagram-link{
+  width:48px !important;
+  height:48px !important;
+  padding:0;
+  overflow:hidden;
+  border:0 !important;
+  background:transparent !important;
+}
+.site-contact-footer .instagram-link img{
+  display:block;
+  width:48px;
+  height:48px;
+  object-fit:cover;
+  border-radius:12px;
+}
+.site-contact-footer .instagram-link:hover{
+  transform:translateY(-2px);
+}
+@media(max-width:700px){
+  .hanok-logo-icon{width:48px !important}
+}
+
+
+/* 마지막 요청: 로고와 라온채 글씨만 확대, 한옥 선화는 검정색 */
+.brand-hanja{font-size:1.95rem !important;gap:14px !important;color:#2a2521 !important}
+.brand-hanja span{font-size:inherit !important;color:#2a2521 !important}
+.hanok-logo-icon{width:76px !important;height:auto;color:#111 !important;flex:0 0 auto}
+.intro .small{font-size:1.12rem !important;color:#7d7067 !important;letter-spacing:.1em}
+@media(max-width:700px){
+  .brand-hanja{font-size:1.65rem !important;gap:10px !important}
+  .hanok-logo-icon{width:62px !important}
+  .intro .small{font-size:1.02rem !important}
+}
+
+
+/* 관리자 설정 연동 */
+:root{--admin-font:"Noto Sans KR",sans-serif;--admin-title-font:"Gungsuh","궁서","Nanum Myeongjo",serif}
+body{font-family:var(--admin-font)}
+.intro h1,.about h2,.reserve h2,.gallery-title h2,.location-heading h2,.category-intro h3,.sidepanel h3,.brand strong,.mark,.brand-hanja,.actions a,.map-actions a,.info b{font-family:var(--admin-title-font)}
+.site-popup{position:fixed;inset:0;z-index:2000;background:rgba(24,21,19,.55);display:none;place-items:center;padding:20px}
+.site-popup.open{display:grid}
+.site-popup-card{position:relative;width:min(480px,100%);background:#fffaf4;border-radius:12px;padding:38px 30px 30px;box-shadow:0 24px 70px rgba(0,0,0,.25);text-align:center}
+.site-popup-card h3{margin:0 0 14px;font-family:var(--admin-title-font);font-size:1.65rem;font-weight:400}
+.site-popup-card p{margin:0;color:#6f665f;white-space:pre-line}
+.site-popup-card a{display:inline-block;margin-top:22px;padding:11px 22px;background:#5f554d;color:#fff;border-radius:4px}
+.site-popup-close{position:absolute;right:13px;top:8px;border:0;background:none;font-size:2rem;color:#746b64;cursor:pointer}
+.site-popup-hide{display:block;margin:18px auto 0;color:#8a8078;font-size:.8rem;border:0;background:none;text-decoration:underline;cursor:pointer}
+
+</style>
+</head>
+<body>
+<header>
+<a aria-label="라온채 메인" class="brand brand-hanja" href="#top"><span>樂安齋</span><svg aria-hidden="true" class="hanok-logo-icon" viewbox="0 0 240 120">
+<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<!-- tiled roof -->
+<path d="M18 50 C38 50 55 34 69 20 C88 28 103 30 120 30 C137 30 152 28 171 20 C185 34 202 50 222 50" stroke-width="3"></path>
+<path d="M24 53 C48 53 62 43 76 30 C94 36 106 37 120 37 C134 37 146 36 164 30 C178 43 192 53 216 53" stroke-width="2.4"></path>
+<path d="M20 55 C48 61 75 57 120 54 C165 57 192 61 220 55" stroke-width="2.2"></path>
+<!-- roof tiles -->
+<g stroke-width="1.2">
+<path d="M42 49 L61 31"></path><path d="M52 51 L69 34"></path><path d="M63 52 L78 37"></path>
+<path d="M75 53 L87 39"></path><path d="M88 54 L97 40"></path><path d="M102 54 L108 41"></path>
+<path d="M116 54 L116 41"></path><path d="M130 54 L128 41"></path><path d="M144 54 L139 40"></path>
+<path d="M158 53 L150 39"></path><path d="M171 52 L160 37"></path><path d="M183 51 L169 34"></path><path d="M195 49 L178 31"></path>
+<path d="M30 54 q5 8 10 0 M42 56 q5 8 10 0 M54 57 q5 8 10 0 M66 57 q5 8 10 0 M78 57 q5 8 10 0 M90 56 q5 8 10 0 M102 56 q5 8 10 0 M114 55 q5 8 10 0 M126 56 q5 8 10 0 M138 56 q5 8 10 0 M150 57 q5 8 10 0 M162 57 q5 8 10 0 M174 56 q5 8 10 0 M186 55 q5 8 10 0 M198 54 q5 8 10 0"></path>
+</g>
+<!-- eaves ornaments -->
+<path d="M18 50 q-5 8 -13 5 M222 50 q5 8 13 5" stroke-width="2.5"></path>
+<!-- building -->
+<path d="M40 60 V103 M200 60 V103" stroke-width="2.6"></path>
+<path d="M55 59 V103 M92 58 V103 M120 57 V103 M148 58 V103 M185 59 V103" stroke-width="2.1"></path>
+<path d="M34 103 H206" stroke-width="2.5"></path>
+<path d="M59 103 V72 H91 V103 M149 103 V72 H181 V103" stroke-width="1.8"></path>
+<path d="M101 103 V69 H139 V103" stroke-width="2"></path>
+<path d="M110 69 V103 M120 69 V103 M130 69 V103" stroke-width="1.1"></path>
+<!-- bases -->
+<path d="M34 103 l-5 10 h18 l-4-10 M111 103 l-4 10 h26 l-4-10 M197 103 l-4 10 h18 l-5-10" stroke-width="1.8"></path>
+</g>
+</svg></a>
+<button aria-label="메뉴" class="menu"><i></i><i></i><i></i></button>
+</header>
+<main id="top">
+<section class="intro">
+<div class="small">라온채</div>
+<h1>머무름이 특별해지는<br/>한옥 스테이</h1>
+<p>한옥의 정취와 현대적인 편안함이 공존하는<br/>프라이빗 스테이</p>
+</section>
+<section class="main-grid">
+<div class="main-card"><img alt="라온채 한옥과 수영장 전경" src="assets/photo-01.jpg"/></div>
+<div class="main-card"><img alt="라온채 수영장과 한옥" src="assets/photo-02.jpg"/></div>
+</section>
+<section class="about">
+<h2>머무는 순간이 특별해지는 공간</h2>
+<p>전통 한옥의 선과 현대적인 편안함이 만나는 라온채. 햇살이 머무는 높은 천장, 낮과 밤이 다른 수영장, 정성스럽게 준비한 다과와 함께 여유로운 머무름을 누려보세요.</p>
+</section>
+<section class="gallery-wrap">
+<div class="gallery">
+<button class="gallery-card reveal">
+<img alt="야간 수영장과 한옥" src="assets/photo-03.jpg"/>
+<span>야간 수영장과 한옥</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="정면에서 본 한옥과 수영장" src="assets/photo-04.jpg"/>
+<span>정면에서 본 한옥과 수영장</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="거실" src="assets/photo-05.jpg"/>
+<span>거실</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="주방" src="assets/photo-06.jpg"/>
+<span>주방</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="침실" src="assets/photo-07.jpg"/>
+<span>침실</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="다락방" src="assets/photo-08.jpg"/>
+<span>다락방</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="욕실" src="assets/photo-09.jpg"/>
+<span>욕실</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="웰컴 다과" src="assets/photo-10.jpg"/>
+<span>웰컴 다과</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="턴테이블" src="assets/photo-11.jpg"/>
+<span>턴테이블</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="바비큐 공간" src="assets/photo-12.jpg"/>
+<span>바비큐 공간</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="노을 수영장" src="assets/photo-13.jpg"/>
+<span>노을 수영장</span>
+</button>
+<button class="gallery-card reveal">
+<img alt="도시 전망" src="assets/photo-14.jpg"/>
+<span>도시 전망</span>
+</button></div>
+</section>
+<section class="info">
+<div><b>독채 한옥</b><span>한 팀 단독 이용</span></div>
+<div><b>온수 수영장</b><span>사계절 프라이빗 풀</span></div>
+<div><b>개별 바비큐</b><span>독립된 야외 공간</span></div>
+<div><b>무료 주차</b><span>숙소 전용 주차</span></div>
+</section>
+</main>
+<footer>충청남도 아산시 탕정면 갈산리 62-62 · © <span id="year"></span> RAONCHAE</footer>
+<div class="lightbox"><button aria-label="닫기">×</button><img alt="" src=""/></div>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const box=document.querySelector('.lightbox'),boxImg=box.querySelector('img');
+document.querySelectorAll('.gallery-card').forEach(card=>card.addEventListener('click',()=>{
+ boxImg.src=card.querySelector('img').src;boxImg.alt=card.querySelector('img').alt;
+ box.classList.add('open');document.body.style.overflow='hidden';
+}));
+function closeBox(){box.classList.remove('open');document.body.style.overflow=''}
+box.querySelector('button').addEventListener('click',closeBox);
+box.addEventListener('click',e=>{if(e.target===box)closeBox()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBox()});
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+<div class="menu-overlay"></div>
+<div class="sidepanel">
+<div style="font-family:Gungsuh,serif;font-size:2rem;">樂</div>
+<h3>라온채</h3>
+<div class="mini">RAONCHAE HANOK STAY</div>
+<a data-category="introPage" href="#">소개</a>
+<a data-category="spacePage" href="#">공간</a>
+<a data-category="bbqPage" href="#">바베큐</a>
+<a data-category="specialPage" href="#">특별함</a>
+<a href="#" onclick="alert('도로명 주소
+충남 아산시 탕정면 탕정면로 162-20
+
+지번 주소
+갈산리 62-62');return false;">오시는 길</a>
+<a href="#" onclick="alert('비수기 평일 27만원
+입실 15:00 / 퇴실 11:00');return false;">예약안내</a>
+<a href="https://www.instagram.com/raonchae_hanokstay/" rel="noopener" target="_blank">인스타그램</a>
+<div class="footer">
+충남 아산시 탕정면 탕정면로 162-20<br/>
+인스타그램<br/>
+@raonchae_hanokstay
+</div>
+</div>
+<script>
+const btn=document.querySelector('.menu');
+const panel=document.querySelector('.sidepanel');
+const ov=document.querySelector('.menu-overlay');
+if(btn){
+btn.onclick=()=>{panel.classList.add('open');ov.classList.add('open');};
+}
+ov.onclick=()=>{panel.classList.remove('open');ov.classList.remove('open');};
+document.querySelectorAll('.sidepanel a').forEach(a=>a.addEventListener('click',()=>{panel.classList.remove('open');ov.classList.remove('open');}));
+</script>
+<footer class="site-contact-footer">
+<div class="address-line">구주소  충남 아산시 탕정면 갈산리 62-62</div>
+<div class="address-line">도로명주소  충남 아산시 탕정면 탕정면로 162-20</div>
+<div class="phone">연락처  010-2224-0048</div>
+<a aria-label="라온채 인스타그램 열기" class="instagram-link" href="https://www.instagram.com/raonchae_hanokstay/" rel="noopener" target="_blank"><img alt="인스타그램" src="assets/photo-16.jpg"/></a>
+</footer>
+<section aria-hidden="true" class="category-page" id="introPage">
+<div class="category-top">
+<a class="category-brand category-home" href="#top"><span class="mark">樂</span><h2>소개</h2></a>
+<button aria-label="메뉴 열기" class="category-menu"><i></i><i></i><i></i></button>
+</div>
+<div class="category-intro">
+<div class="small">ABOUT RAONCHAE</div>
+<h3>소개</h3>
+</div>
+<div class="category-gallery">
+<button class="category-card"><img alt="소개 사진" src="assets/photo-17.jpg"/></button><button class="category-card"><img alt="소개 사진" src="assets/photo-18.jpg"/></button><button class="category-card"><img alt="소개 사진" src="assets/photo-19.jpg"/></button><button class="category-card"><img alt="소개 사진" src="assets/photo-20.jpg"/></button>
+</div>
+</section>
+<section aria-hidden="true" class="category-page" id="spacePage">
+<div class="category-top">
+<a class="category-brand category-home" href="#top"><span class="mark">樂</span><h2>공간</h2></a>
+<button aria-label="메뉴 열기" class="category-menu"><i></i><i></i><i></i></button>
+</div>
+<div class="category-intro">
+<div class="small">SPACE</div>
+<h3>공간</h3>
+</div>
+<div class="category-gallery">
+<button class="category-card"><img alt="공간 사진" src="assets/photo-21.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-22.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-23.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-24.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-25.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-26.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-27.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-28.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-29.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-30.jpg"/></button><button class="category-card"><img alt="공간 사진" src="assets/photo-31.jpg"/></button>
+</div>
+</section>
+<section aria-hidden="true" class="category-page" id="bbqPage">
+<div class="category-top">
+<a class="category-brand category-home" href="#top"><span class="mark">樂</span><h2>바베큐</h2></a>
+<button aria-label="메뉴 열기" class="category-menu"><i></i><i></i><i></i></button>
+</div>
+<div class="category-intro">
+<div class="small">BARBECUE</div>
+<h3>바베큐</h3>
+</div>
+<div class="category-gallery">
+<button class="category-card"><img alt="바베큐 사진" src="assets/photo-32.jpg"/></button><button class="category-card"><img alt="바베큐 사진" src="assets/photo-33.jpg"/></button><button class="category-card"><img alt="바베큐 사진" src="assets/photo-34.jpg"/></button>
+</div>
+</section>
+<section aria-hidden="true" class="category-page" id="specialPage">
+<div class="category-top">
+<a class="category-brand category-home" href="#top"><span class="mark">樂</span><h2>특별함</h2></a>
+<button aria-label="메뉴 열기" class="category-menu"><i></i><i></i><i></i></button>
+</div>
+<div class="category-intro">
+<div class="small">SPECIAL</div>
+<h3>특별함</h3>
+</div>
+<div class="category-gallery">
+<button class="category-card"><img alt="전통놀이 이미지" src="assets/photo-35.jpg"/></button><button class="category-card"><img alt="전통놀이 이미지" src="assets/photo-36.jpg"/></button><button class="category-card"><img alt="전통놀이 이미지" src="assets/photo-37.jpg"/></button><button class="category-card"><img alt="구급약품 및 편의용품" src="assets/photo-38.jpg"/></button><button class="category-card"><img alt="구급약품 및 편의용품" src="assets/photo-39.jpg"/></button>
+<button class="category-card"><img alt="전통놀이" src="assets/traditional-games.jpg"/></button>
+</div>
+</section>
+<script>
+document.querySelectorAll('[data-category]').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.getElementById(link.dataset.category);
+    document.querySelector('.sidepanel')?.classList.remove('open');
+    document.querySelector('.menu-overlay')?.classList.remove('open');
+    target.classList.add('open');
+    target.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  });
+});
+
+document.querySelectorAll('.category-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const img=card.querySelector('img');
+    const box=document.querySelector('.lightbox');
+    const boxImg=box.querySelector('img');
+    boxImg.src=img.src;
+    boxImg.alt=img.alt;
+    box.classList.add('open');
+    document.body.style.overflow='hidden';
+  });
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.category-page.open').forEach(page=>{
+      page.classList.remove('open');
+      page.setAttribute('aria-hidden','true');
+    });
+    if(!document.querySelector('.lightbox.open')) document.body.style.overflow='';
+  }
+});
+</script>
+<script>
+document.querySelectorAll('.category-menu').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelector('.sidepanel')?.classList.add('open');
+    document.querySelector('.menu-overlay')?.classList.add('open');
+  });
+});
+
+document.querySelectorAll('.category-home').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.querySelectorAll('.category-page.open').forEach(page=>{
+      page.classList.remove('open');
+      page.setAttribute('aria-hidden','true');
+    });
+    document.body.style.overflow='';
+  });
+});
+</script>
+<div aria-hidden="true" class="site-popup" id="sitePopup">
+<div aria-labelledby="sitePopupTitle" aria-modal="true" class="site-popup-card" role="dialog">
+<button aria-label="닫기" class="site-popup-close" type="button">×</button>
+<h3 id="sitePopupTitle"></h3>
+<p id="sitePopupText"></p>
+<a href="#" id="sitePopupLink" style="display:none"></a>
+<button class="site-popup-hide" type="button">오늘 하루 보지 않기</button>
+</div>
+</div>
+
+<script>
+(async function(){
+  const bodyFontMap={
+    noto:'"Noto Sans KR",sans-serif',
+    gowun:'"Gowun Batang",serif',
+    myeongjo:'"Nanum Myeongjo",serif',
+    gungseo:'"Gungsuh","궁서","Nanum Myeongjo",serif'
+  };
+  try{
+    const response=await fetch('/content/site.json?ts='+Date.now(),{cache:'no-store'});
+    if(!response.ok) throw new Error('설정 파일을 읽지 못했습니다.');
+    const settings=await response.json();
+    document.documentElement.style.setProperty('--admin-font',bodyFontMap[settings.bodyFont]||bodyFontMap.noto);
+    document.documentElement.style.setProperty('--admin-title-font',bodyFontMap[settings.titleFont]||bodyFontMap.gungseo);
+    const imgs=[...document.querySelectorAll('img')];
+    (settings.images||[]).forEach((item,i)=>{if(imgs[i]&&item.image){imgs[i].src=item.image; if(item.name) imgs[i].alt=item.name;}});
+    const popup=settings.popup||{};
+    const popupEl=document.getElementById('sitePopup');
+    const hiddenToday=localStorage.getItem('raonchaePopupHiddenDate')===new Date().toISOString().slice(0,10);
+    if(popup.enabled&&!hiddenToday&&popupEl){
+      document.getElementById('sitePopupTitle').textContent=popup.title||'알림';
+      document.getElementById('sitePopupText').textContent=popup.text||'';
+      const link=document.getElementById('sitePopupLink');
+      if(popup.linkUrl){link.href=popup.linkUrl;link.textContent=popup.linkText||'자세히 보기';link.style.display='inline-block';}
+      setTimeout(()=>{popupEl.classList.add('open');popupEl.setAttribute('aria-hidden','false')},300);
+      popupEl.querySelector('.site-popup-close').onclick=()=>{popupEl.classList.remove('open');popupEl.setAttribute('aria-hidden','true')};
+      popupEl.querySelector('.site-popup-hide').onclick=()=>{localStorage.setItem('raonchaePopupHiddenDate',new Date().toISOString().slice(0,10));popupEl.classList.remove('open')};
+      popupEl.addEventListener('click',e=>{if(e.target===popupEl)popupEl.classList.remove('open')});
+    }
+  }catch(err){console.error(err);}
+})();
+</script></body>
+</html>

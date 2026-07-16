@@ -1,0 +1,173 @@
+{
+  "bodyFont": "noto",
+  "titleFont": "gungseo",
+  "popup": {
+    "enabled": false,
+    "title": "라온채 안내",
+    "text": "",
+    "linkText": "예약하기",
+    "linkUrl": ""
+  },
+  "images": [
+    {
+      "name": "라온채 한옥과 수영장 전경",
+      "image": "/assets/photo-01.jpg"
+    },
+    {
+      "name": "라온채 수영장과 한옥",
+      "image": "/assets/photo-02.jpg"
+    },
+    {
+      "name": "야간 수영장과 한옥",
+      "image": "/assets/photo-03.jpg"
+    },
+    {
+      "name": "정면에서 본 한옥과 수영장",
+      "image": "/assets/photo-04.jpg"
+    },
+    {
+      "name": "거실",
+      "image": "/assets/photo-05.jpg"
+    },
+    {
+      "name": "주방",
+      "image": "/assets/photo-06.jpg"
+    },
+    {
+      "name": "침실",
+      "image": "/assets/photo-07.jpg"
+    },
+    {
+      "name": "다락방",
+      "image": "/assets/photo-08.jpg"
+    },
+    {
+      "name": "욕실",
+      "image": "/assets/photo-09.jpg"
+    },
+    {
+      "name": "웰컴 다과",
+      "image": "/assets/photo-10.jpg"
+    },
+    {
+      "name": "턴테이블",
+      "image": "/assets/photo-11.jpg"
+    },
+    {
+      "name": "바비큐 공간",
+      "image": "/assets/photo-12.jpg"
+    },
+    {
+      "name": "노을 수영장",
+      "image": "/assets/photo-13.jpg"
+    },
+    {
+      "name": "도시 전망",
+      "image": "/assets/photo-14.jpg"
+    },
+    {
+      "name": "15번 사진",
+      "image": "/"
+    },
+    {
+      "name": "인스타그램",
+      "image": "/assets/photo-16.jpg"
+    },
+    {
+      "name": "소개 사진",
+      "image": "/assets/photo-17.jpg"
+    },
+    {
+      "name": "소개 사진",
+      "image": "/assets/photo-18.jpg"
+    },
+    {
+      "name": "소개 사진",
+      "image": "/assets/photo-19.jpg"
+    },
+    {
+      "name": "소개 사진",
+      "image": "/assets/photo-20.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-21.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-22.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-23.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-24.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-25.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-26.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-27.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-28.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-29.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-30.jpg"
+    },
+    {
+      "name": "공간 사진",
+      "image": "/assets/photo-31.jpg"
+    },
+    {
+      "name": "바베큐 사진",
+      "image": "/assets/photo-32.jpg"
+    },
+    {
+      "name": "바베큐 사진",
+      "image": "/assets/photo-33.jpg"
+    },
+    {
+      "name": "바베큐 사진",
+      "image": "/assets/photo-34.jpg"
+    },
+    {
+      "name": "전통놀이 이미지",
+      "image": "/assets/photo-35.jpg"
+    },
+    {
+      "name": "전통놀이 이미지",
+      "image": "/assets/photo-36.jpg"
+    },
+    {
+      "name": "전통놀이 이미지",
+      "image": "/assets/photo-37.jpg"
+    },
+    {
+      "name": "구급약품 및 편의용품",
+      "image": "/assets/photo-38.jpg"
+    },
+    {
+      "name": "구급약품 및 편의용품",
+      "image": "/assets/photo-39.jpg"
+    },
+    {
+      "name": "전통놀이",
+      "image": "/assets/traditional-games.jpg"
+    }
+  ]
+}
