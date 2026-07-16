@@ -2,8 +2,8 @@
   "bodyFont": "noto",
   "titleFont": "gungseo",
   "popup": {
-    "enabled": false,
-    "title": "라온채 안내",
+    "enabled": true,
+    "title": "테스트 팝업",
     "text": "",
     "linkText": "예약하기",
     "linkUrl": ""
