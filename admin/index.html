@@ -1,2 +1,249 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>라온채 관리자</title></head><body><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script><script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script></body></html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>라온채 관리자</title>
+<style>
+:root{
+  --bg:#f6f3ed;--panel:#fff;--ink:#2d2925;--muted:#82796f;
+  --line:#e8e0d6;--accent:#5d493a;--accent2:#8b705c;--danger:#a33c32;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans KR",sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.shell{max-width:1120px;margin:auto;padding:24px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.brand{display:flex;gap:12px;align-items:center}
+.mark{width:44px;height:44px;border:1px solid var(--accent);display:grid;place-items:center;font-family:serif;font-size:22px}
+.brand b{display:block;font-size:20px}.brand small{color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 6px 24px rgba(0,0,0,.035)}
+.login{max-width:430px;margin:12vh auto}
+.login h1{font-size:26px;margin:0 0 8px}
+.login p{color:var(--muted);margin:0 0 22px}
+label{display:block;font-weight:700;font-size:14px;margin:0 0 8px}
+input,textarea,select{width:100%;border:1px solid #d8cec3;border-radius:9px;padding:12px;background:#fff;color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{border:0;border-radius:9px;padding:12px 17px;background:var(--accent);color:#fff;font-weight:700}
+.btn.secondary{background:#eee7df;color:var(--ink)}
+.btn.danger{background:var(--danger)}
+.btn.small{padding:8px 11px;font-size:13px}
+.status{font-size:14px;color:var(--muted)}
+.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:999px}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.section{display:none}.section.active{display:block}
+.section h2{margin:0 0 18px;font-size:22px}
+.field{margin-bottom:17px}
+.switchline{display:flex;gap:10px;align-items:center}
+.switchline input{width:auto}
+.image-list{display:grid;gap:12px}
+.image-item{display:grid;grid-template-columns:92px 1fr auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:11px;padding:12px}
+.thumb{width:92px;height:70px;object-fit:cover;border-radius:8px;background:#eee}
+.image-meta b{display:block;margin-bottom:5px}.image-meta code{font-size:12px;color:var(--muted);word-break:break-all}
+.uploading{opacity:.55;pointer-events:none}
+.notice{padding:12px 14px;border-radius:9px;background:#f1ebe4;color:#54483e;margin-bottom:15px;font-size:14px}
+@media(max-width:720px){
+  .shell{padding:14px}.row{grid-template-columns:1fr}
+  .image-item{grid-template-columns:70px 1fr}.thumb{width:70px;height:58px}
+  .image-item .actions{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div id="loginView" class="card login">
+    <h1>라온채 관리자</h1>
+    <p>관리자 비밀번호로 로그인하세요.</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="password">비밀번호</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn" type="submit">로그인</button>
+      <span id="loginStatus" class="status"></span>
+    </form>
+  </div>
+
+  <div id="appView" class="hidden">
+    <div class="top">
+      <div class="brand">
+        <div class="mark">樂</div>
+        <div><b>라온채 관리자</b><small>사진 · 폰트 · 팝업 관리</small></div>
+      </div>
+      <div class="actions">
+        <a class="btn secondary small" href="/" target="_blank" rel="noopener">홈페이지 보기</a>
+        <button id="logoutBtn" class="btn secondary small">로그아웃</button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="popup">팝업</button>
+      <button class="tab" data-tab="font">폰트</button>
+      <button class="tab" data-tab="images">사진</button>
+    </div>
+
+    <div class="card">
+      <div id="message" class="notice hidden"></div>
+
+      <section id="popup" class="section active">
+        <h2>팝업 관리</h2>
+        <div class="field switchline">
+          <input id="popupEnabled" type="checkbox">
+          <label for="popupEnabled" style="margin:0">팝업 사용</label>
+        </div>
+        <div class="field"><label>팝업 제목</label><input id="popupTitle"></div>
+        <div class="field"><label>팝업 내용</label><textarea id="popupText"></textarea></div>
+        <div class="row">
+          <div class="field"><label>버튼 문구</label><input id="popupLinkText"></div>
+          <div class="field"><label>버튼 링크</label><input id="popupLinkUrl" placeholder="https://..."></div>
+        </div>
+      </section>
+
+      <section id="font" class="section">
+        <h2>폰트 관리</h2>
+        <div class="row">
+          <div class="field">
+            <label>본문 폰트</label>
+            <select id="bodyFont">
+              <option value="noto">깔끔한 고딕</option>
+              <option value="gowun">고운바탕</option>
+              <option value="myeongjo">나눔명조</option>
+              <option value="gungseo">궁서체</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>제목 폰트</label>
+            <select id="titleFont">
+              <option value="gungseo">궁서체</option>
+              <option value="gowun">고운바탕</option>
+              <option value="myeongjo">나눔명조</option>
+              <option value="noto">깔끔한 고딕</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section id="images" class="section">
+        <h2>사진 관리</h2>
+        <div class="notice">바꿀 사진의 ‘사진 선택’을 누른 뒤 저장하세요. 업로드 후 GitHub와 Netlify가 자동 배포하며 보통 1~3분 걸립니다.</div>
+        <div id="imageList" class="image-list"></div>
+      </section>
+
+      <div class="actions" style="margin-top:22px">
+        <button id="saveBtn" class="btn">변경사항 저장</button>
+        <span id="saveStatus" class="status"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API="/.netlify/functions";
+let state=null;
+const $=s=>document.querySelector(s);
+const msg=(t,err=false)=>{
+  const el=$("#message"); el.textContent=t; el.classList.remove("hidden");
+  el.style.background=err?"#f9e7e4":"#f1ebe4";
+  el.style.color=err?"#8c2f27":"#54483e";
+  setTimeout(()=>el.classList.add("hidden"),5000);
+};
+async function api(path,opt={}){
+  const res=await fetch(API+path,{credentials:"include",headers:{"Content-Type":"application/json",...(opt.headers||{})},...opt});
+  let data={}; try{data=await res.json()}catch{}
+  if(!res.ok) throw new Error(data.error||"요청 처리 중 오류가 발생했습니다.");
+  return data;
+}
+async function boot(){
+  try{
+    const s=await api("/admin-session");
+    if(s.authenticated){await showApp()}else showLogin();
+  }catch{showLogin()}
+}
+function showLogin(){
+  $("#loginView").classList.remove("hidden");$("#appView").classList.add("hidden");
+}
+async function showApp(){
+  $("#loginView").classList.add("hidden");$("#appView").classList.remove("hidden");
+  await loadContent();
+}
+$("#loginForm").addEventListener("submit",async e=>{
+  e.preventDefault(); $("#loginStatus").textContent="로그인 중...";
+  try{
+    await api("/admin-login",{method:"POST",body:JSON.stringify({password:$("#password").value})});
+    $("#password").value="";$("#loginStatus").textContent="";await showApp();
+  }catch(err){$("#loginStatus").textContent=err.message}
+});
+$("#logoutBtn").onclick=async()=>{await api("/admin-logout",{method:"POST",body:"{}"});showLogin()};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");$("#"+b.dataset.tab).classList.add("active");
+});
+async function loadContent(){
+  $("#saveStatus").textContent="불러오는 중...";
+  try{
+    const r=await api("/admin-content");state=r.content;
+    $("#popupEnabled").checked=!!state.popup?.enabled;
+    $("#popupTitle").value=state.popup?.title||"";
+    $("#popupText").value=state.popup?.text||"";
+    $("#popupLinkText").value=state.popup?.linkText||"";
+    $("#popupLinkUrl").value=state.popup?.linkUrl||"";
+    $("#bodyFont").value=state.bodyFont||"noto";
+    $("#titleFont").value=state.titleFont||"gungseo";
+    renderImages();$("#saveStatus").textContent="";
+  }catch(err){$("#saveStatus").textContent=err.message}
+}
+function renderImages(){
+  const box=$("#imageList");box.innerHTML="";
+  (state.images||[]).forEach((im,i)=>{
+    const d=document.createElement("div");d.className="image-item";
+    d.innerHTML=`<img class="thumb" src="${escapeHtml(im.image||"")}" alt="">
+      <div class="image-meta"><b>${escapeHtml(im.name||("사진 "+(i+1)))}</b><code>${escapeHtml(im.image||"")}</code></div>
+      <div class="actions"><label class="btn secondary small">사진 선택<input type="file" accept="image/jpeg,image/png,image/webp" hidden></label></div>`;
+    const input=d.querySelector("input");
+    input.onchange=()=>uploadImage(input.files[0],i,d);
+    box.appendChild(d);
+  });
+}
+async function uploadImage(file,index,row){
+  if(!file)return;
+  if(file.size>8*1024*1024){msg("사진은 8MB 이하로 선택해주세요.",true);return}
+  row.classList.add("uploading");
+  try{
+    const base64=await new Promise((resolve,reject)=>{
+      const fr=new FileReader();fr.onload=()=>resolve(fr.result.split(",")[1]);fr.onerror=reject;fr.readAsDataURL(file);
+    });
+    const r=await api("/admin-upload",{method:"POST",body:JSON.stringify({name:file.name,type:file.type,data:base64})});
+    state.images[index].image=r.path;renderImages();msg("사진이 업로드되었습니다. 아래 저장 버튼을 눌러주세요.");
+  }catch(err){msg(err.message,true)}
+  finally{row.classList.remove("uploading")}
+}
+$("#saveBtn").onclick=async()=>{
+  if(!state)return;
+  state.bodyFont=$("#bodyFont").value;
+  state.titleFont=$("#titleFont").value;
+  state.popup={
+    enabled:$("#popupEnabled").checked,
+    title:$("#popupTitle").value.trim(),
+    text:$("#popupText").value.trim(),
+    linkText:$("#popupLinkText").value.trim(),
+    linkUrl:$("#popupLinkUrl").value.trim()
+  };
+  $("#saveStatus").textContent="저장 중...";
+  try{
+    await api("/admin-content",{method:"PUT",body:JSON.stringify({content:state})});
+    $("#saveStatus").textContent="저장 완료 · 자동 배포 중";
+    msg("저장되었습니다. 홈페이지 반영까지 보통 1~3분 걸립니다.");
+  }catch(err){$("#saveStatus").textContent=err.message;msg(err.message,true)}
+};
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+boot();
+</script>
+</body>
+</html>
