@@ -388,9 +388,95 @@ body{font-family:var(--admin-font)}
 .site-popup-close{position:absolute;right:13px;top:8px;border:0;background:none;font-size:2rem;color:#746b64;cursor:pointer}
 .site-popup-hide{display:block;margin:18px auto 0;color:#8a8078;font-size:.8rem;border:0;background:none;text-decoration:underline;cursor:pointer}
 
+
+
+/* ===== v6 프리미엄 오프닝 · 모바일 · 갤러리 개선 ===== */
+body.opening-active{overflow:hidden}
+.premium-opening{
+  position:fixed;inset:0;z-index:4000;display:grid;place-items:center;
+  background:var(--paper);color:#2a2521;opacity:1;visibility:visible;
+  transition:opacity .8s ease,visibility .8s ease;
+}
+.premium-opening.hide{opacity:0;visibility:hidden;pointer-events:none}
+.opening-inner{text-align:center;padding:24px}
+.opening-line{opacity:0;transform:translateY(12px);will-change:opacity,transform}
+.opening-hanja{font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-size:clamp(2.4rem,7vw,4.6rem);letter-spacing:.22em;animation:openingIn .9s .15s forwards}
+.opening-korean{font-family:"Gungsuh","궁서","Nanum Myeongjo",serif;font-size:clamp(1.1rem,3vw,1.55rem);letter-spacing:.22em;margin-top:18px;animation:openingIn .8s 1.05s forwards}
+.opening-copy{font-family:"Nanum Myeongjo",serif;font-size:clamp(1rem,3vw,1.45rem);line-height:1.8;margin-top:34px;animation:openingIn .9s 1.75s forwards}
+.opening-skip{position:absolute;right:26px;bottom:24px;border:0;background:none;color:#8b8179;font-size:.72rem;letter-spacing:.22em;cursor:pointer;padding:12px}
+@keyframes openingIn{to{opacity:1;transform:none}}
+
+.menu{width:44px;height:44px;padding:9px;display:flex;flex-direction:column;justify-content:center}
+.menu i{height:2px;margin:4px 0;border-radius:2px}
+.main-card{cursor:zoom-in}
+.main-card img{transition:transform 8s ease,filter .4s ease}
+.main-card:hover img{transform:scale(1.025)}
+.main-card::after,.gallery-card::after,.category-card::after{
+  content:'＋';position:absolute;right:14px;bottom:14px;width:38px;height:38px;
+  display:grid;place-items:center;border-radius:50%;background:rgba(34,29,25,.68);
+  color:#fff;font-size:1.15rem;opacity:0;transform:translateY(5px);transition:.25s;
+}
+.main-card:hover::after,.gallery-card:hover::after,.category-card:hover::after{opacity:1;transform:none}
+.category-card{position:relative}
+
+.lightbox{grid-template-columns:72px minmax(0,1fr) 72px;gap:10px;padding:4vw 2vw}
+.lightbox.open{display:grid}
+.lightbox-stage{position:relative;display:grid;place-items:center;min-width:0}
+.lightbox img{max-width:100%;max-height:86vh}
+.lightbox .lightbox-close{top:14px;right:18px;z-index:2;cursor:pointer}
+.lightbox-nav{position:static!important;width:52px;height:52px;border-radius:50%!important;background:rgba(255,255,255,.12)!important;color:#fff!important;font-size:1.8rem!important;cursor:pointer}
+.lightbox-nav:disabled{opacity:.2;cursor:default}
+.lightbox-count{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);padding:4px 11px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:.75rem;letter-spacing:.08em}
+
+.hero-enter{animation:heroEnter 1s .15s both}
+@keyframes heroEnter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+@media(max-width:700px){
+  header{height:82px;padding:0 16px}
+  .brand-hanja{font-size:1.45rem!important;gap:8px!important}
+  .hanok-logo-icon{width:56px!important}
+  .menu{width:46px;height:46px;padding:10px;margin-right:-6px}
+  .intro{padding:38px 16px 52px}
+  .intro h1{font-size:clamp(1.7rem,8vw,2.25rem);margin:16px 0;line-height:1.45}
+  .intro p{font-size:.9rem;line-height:1.8}
+  .main-grid{grid-template-columns:1fr;gap:14px;margin-bottom:78px}
+  .main-card:first-child,.main-card:last-child{aspect-ratio:4/3}
+  .gallery{grid-template-columns:1fr;gap:14px}
+  .gallery-card img,.category-card img{aspect-ratio:4/3}
+  .category-gallery{grid-template-columns:1fr;gap:14px}
+  .main-card::after,.gallery-card::after,.category-card::after{opacity:.78;transform:none;width:34px;height:34px;right:10px;bottom:10px}
+  .about{padding:78px 18px}
+  .gallery-wrap{padding-bottom:85px}
+  .info{margin-bottom:80px}
+  .lightbox{grid-template-columns:1fr;padding:58px 12px 24px}
+  .lightbox-stage{grid-row:1}
+  .lightbox-nav{position:absolute!important;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px}
+  .lightbox-prev{left:8px}.lightbox-next{right:8px}
+  .lightbox img{max-height:78vh}
+  .opening-skip{right:14px;bottom:12px}
+}
+@media(max-width:390px){
+  .brand-hanja{font-size:1.28rem!important}
+  .hanok-logo-icon{width:50px!important}
+  .intro .small{font-size:.94rem!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .premium-opening{display:none!important}
+}
+
 </style>
 </head>
 <body>
+<div class="premium-opening" id="premiumOpening" aria-label="라온채 오프닝">
+  <div class="opening-inner">
+    <div class="opening-line opening-hanja">樂安齋</div>
+    <div class="opening-line opening-korean">라온채</div>
+    <div class="opening-line opening-copy">머무름이 특별해지는<br>한옥 스테이</div>
+  </div>
+  <button class="opening-skip" type="button">SKIP</button>
+</div>
+
 <header>
 <a aria-label="라온채 메인" class="brand brand-hanja" href="#top"><span>樂安齋</span><svg aria-hidden="true" class="hanok-logo-icon" viewbox="0 0 240 120">
 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -422,12 +508,12 @@ body{font-family:var(--admin-font)}
 <button aria-label="메뉴" class="menu"><i></i><i></i><i></i></button>
 </header>
 <main id="top">
-<section class="intro">
+<section class="intro hero-enter">
 <div class="small">라온채</div>
 <h1>머무름이 특별해지는<br/>한옥 스테이</h1>
 <p>한옥의 정취와 현대적인 편안함이 공존하는<br/>프라이빗 스테이</p>
 </section>
-<section class="main-grid">
+<section class="main-grid hero-enter">
 <div class="main-card"><img alt="라온채 한옥과 수영장 전경" src="assets/photo-01.jpg"/></div>
 <div class="main-card"><img alt="라온채 수영장과 한옥" src="assets/photo-02.jpg"/></div>
 </section>
@@ -494,19 +580,67 @@ body{font-family:var(--admin-font)}
 </section>
 </main>
 <footer>충청남도 아산시 탕정면 갈산리 62-62 · © <span id="year"></span> RAONCHAE</footer>
-<div class="lightbox"><button aria-label="닫기">×</button><img alt="" src=""/></div>
+<div class="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="닫기">×</button>
+  <button class="lightbox-nav lightbox-prev" aria-label="이전 사진">‹</button>
+  <div class="lightbox-stage"><img alt="" src=""/><span class="lightbox-count"></span></div>
+  <button class="lightbox-nav lightbox-next" aria-label="다음 사진">›</button>
+</div>
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const box=document.querySelector('.lightbox'),boxImg=box.querySelector('img');
-document.querySelectorAll('.gallery-card').forEach(card=>card.addEventListener('click',()=>{
- boxImg.src=card.querySelector('img').src;boxImg.alt=card.querySelector('img').alt;
- box.classList.add('open');document.body.style.overflow='hidden';
-}));
-function closeBox(){box.classList.remove('open');document.body.style.overflow=''}
-box.querySelector('button').addEventListener('click',closeBox);
+
+const box=document.querySelector('.lightbox');
+const boxImg=box.querySelector('img');
+const countEl=box.querySelector('.lightbox-count');
+const prevBtn=box.querySelector('.lightbox-prev');
+const nextBtn=box.querySelector('.lightbox-next');
+let galleryItems=[];
+let currentIndex=0;
+
+function collectGalleryItems(){
+  galleryItems=[...document.querySelectorAll('.main-card img,.gallery-card img,.category-card img')];
+}
+function renderLightbox(index){
+  if(!galleryItems.length) collectGalleryItems();
+  currentIndex=(index+galleryItems.length)%galleryItems.length;
+  const img=galleryItems[currentIndex];
+  boxImg.src=img.currentSrc||img.src;
+  boxImg.alt=img.alt||'';
+  countEl.textContent=`${currentIndex+1} / ${galleryItems.length}`;
+}
+function openBox(img){
+  collectGalleryItems();
+  const index=galleryItems.indexOf(img);
+  renderLightbox(index<0?0:index);
+  box.classList.add('open');
+  box.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeBox(){
+  box.classList.remove('open');
+  box.setAttribute('aria-hidden','true');
+  if(!document.querySelector('.category-page.open')) document.body.style.overflow='';
+}
+document.querySelectorAll('.main-card,.gallery-card,.category-card').forEach(card=>{
+  card.addEventListener('click',()=>openBox(card.querySelector('img')));
+});
+box.querySelector('.lightbox-close').addEventListener('click',closeBox);
+prevBtn.addEventListener('click',e=>{e.stopPropagation();renderLightbox(currentIndex-1)});
+nextBtn.addEventListener('click',e=>{e.stopPropagation();renderLightbox(currentIndex+1)});
 box.addEventListener('click',e=>{if(e.target===box)closeBox()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBox()});
+document.addEventListener('keydown',e=>{
+  if(!box.classList.contains('open')) return;
+  if(e.key==='Escape') closeBox();
+  if(e.key==='ArrowLeft') renderLightbox(currentIndex-1);
+  if(e.key==='ArrowRight') renderLightbox(currentIndex+1);
+});
+let touchStartX=0;
+box.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].clientX},{passive:true});
+box.addEventListener('touchend',e=>{
+  const delta=e.changedTouches[0].clientX-touchStartX;
+  if(Math.abs(delta)>45) renderLightbox(currentIndex+(delta<0?1:-1));
+},{passive:true});
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 <div class="menu-overlay"></div>
@@ -614,17 +748,6 @@ document.querySelectorAll('[data-category]').forEach(link=>{
   });
 });
 
-document.querySelectorAll('.category-card').forEach(card=>{
-  card.addEventListener('click',()=>{
-    const img=card.querySelector('img');
-    const box=document.querySelector('.lightbox');
-    const boxImg=box.querySelector('img');
-    boxImg.src=img.src;
-    boxImg.alt=img.alt;
-    box.classList.add('open');
-    document.body.style.overflow='hidden';
-  });
-});
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     document.querySelectorAll('.category-page.open').forEach(page=>{
@@ -694,5 +817,25 @@ document.querySelectorAll('.category-home').forEach(link=>{
     }
   }catch(err){console.error(err);}
 })();
-</script></body>
+</script>
+<script>
+(function(){
+  const opening=document.getElementById('premiumOpening');
+  if(!opening) return;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const alreadySeen=sessionStorage.getItem('raonchaeOpeningSeen')==='1';
+  const finish=()=>{
+    opening.classList.add('hide');
+    document.body.classList.remove('opening-active');
+    sessionStorage.setItem('raonchaeOpeningSeen','1');
+    setTimeout(()=>opening.remove(),900);
+  };
+  if(reduce||alreadySeen){opening.remove();return;}
+  document.body.classList.add('opening-active');
+  opening.querySelector('.opening-skip').addEventListener('click',finish);
+  setTimeout(finish,3300);
+})();
+</script>
+
+</body>
 </html>
