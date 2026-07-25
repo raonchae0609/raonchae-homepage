@@ -230,8 +230,8 @@ const lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');docum
     });
     if(cfg.popup&&cfg.popup.enabled){
       const pop=document.createElement('div');
-      pop.style.cssText='position:fixed;inset:0;background:rgba(20,17,14,.58);z-index:500;display:grid;place-items:center;padding:20px';
-      const card=document.createElement('div');card.style.cssText='max-width:440px;width:100%;background:#fffdf9;padding:30px;border:1px solid #d8cec2';
+      pop.style.cssText='position:fixed;top:20px;right:20px;z-index:9999;';
+      const card=document.createElement('div');card.style.cssText='width:420px;max-width:calc(100vw - 40px);background:#fffdf9;padding:30px;border:1px solid #d8cec2;box-shadow:0 12px 35px rgba(0,0,0,.18);border-radius:12px;';
       const h=document.createElement('h2');h.textContent=cfg.popup.title||'알림';h.style.fontFamily='Gowun Batang,serif';
       const p=document.createElement('p');p.textContent=cfg.popup.text||'';
       const close=document.createElement('button');close.type='button';close.textContent='닫기';close.style.cssText='padding:10px 18px;border:1px solid #5b5047;background:#fff';
