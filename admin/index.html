@@ -85,6 +85,7 @@ textarea{min-height:110px;resize:vertical}
     <div class="tabs">
       <button class="tab active" data-tab="popup">팝업</button>
       <button class="tab" data-tab="font">폰트</button>
+      <button class="tab" data-tab="settings">문구·요금</button>
       <button class="tab" data-tab="images">사진</button>
     </div>
 
@@ -127,6 +128,18 @@ textarea{min-height:110px;resize:vertical}
             </select>
           </div>
         </div>
+      </section>
+
+
+      <section id="settings" class="section">
+        <h2>문구 · 요금 관리</h2>
+        <div class="notice">메인 문구와 예약 안내에 표시되는 내용을 수정할 수 있습니다.</div>
+        <div class="row"><div class="field"><label>메인 제목</label><textarea id="heroTitle"></textarea></div><div class="field"><label>메인 설명</label><textarea id="heroSubtitle"></textarea></div></div>
+        <div class="row"><div class="field"><label>비수기 평일</label><input id="weekdayPrice"></div><div class="field"><label>금요일·토요일</label><input id="weekendPrice"></div></div>
+        <div class="row"><div class="field"><label>기준 / 최대 인원</label><input id="capacity"></div><div class="field"><label>입실 / 퇴실</label><input id="checkTime"></div></div>
+        <div class="row"><div class="field"><label>인원 추가</label><input id="extraPerson"></div><div class="field"><label>바베큐</label><input id="bbqPrice"></div></div>
+        <div class="row"><div class="field"><label>32℃ 온수</label><input id="pool32"></div><div class="field"><label>35℃ 온수</label><input id="pool35"></div></div>
+        <div class="row"><div class="field"><label>수영장 이용 시간</label><input id="poolTime"></div><div class="field"><label>환불 규정</label><input id="refundPolicy"></div></div>
       </section>
 
       <section id="images" class="section">
@@ -196,6 +209,9 @@ async function loadContent(){
     $("#popupLinkUrl").value=state.popup?.linkUrl||"";
     $("#bodyFont").value=state.bodyFont||"noto";
     $("#titleFont").value=state.titleFont||"gungseo";
+
+    const settings=state.settings||{};
+    ["heroTitle","heroSubtitle","weekdayPrice","weekendPrice","capacity","checkTime","extraPerson","bbqPrice","pool32","pool35","poolTime","refundPolicy"].forEach(k=>{const el=$("#"+k);if(el)el.value=settings[k]||""});
     renderImages();$("#saveStatus").textContent="";
   }catch(err){$("#saveStatus").textContent=err.message}
 }
@@ -228,6 +244,9 @@ $("#saveBtn").onclick=async()=>{
   if(!state)return;
   state.bodyFont=$("#bodyFont").value;
   state.titleFont=$("#titleFont").value;
+
+  state.settings={};
+  ["heroTitle","heroSubtitle","weekdayPrice","weekendPrice","capacity","checkTime","extraPerson","bbqPrice","pool32","pool35","poolTime","refundPolicy"].forEach(k=>{const el=$("#"+k);state.settings[k]=el?el.value.trim():""});
   state.popup={
     enabled:$("#popupEnabled").checked,
     title:$("#popupTitle").value.trim(),
