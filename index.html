@@ -90,13 +90,7 @@ body.opening-active{overflow:hidden}
 <section class="hero" id="home">
 <div class="slides" id="slides">
 <div class="slide active"><img alt="라온채 한옥과 수영장 전경" data-image-slot="assets/photo-01.jpg" decoding="async" fetchpriority="high" src="assets/photo-01.jpg"/></div>
-<div class="slide"><img alt="라온채 노을 수영장" data-image-slot="assets/pool-sunset-new.jpg" decoding="async" loading="lazy" src="assets/pool-sunset-new.jpg"/></div>
-<div class="slide"><img alt="라온채 한옥 야경" data-image-slot="assets/photo-03.jpg" decoding="async" loading="lazy" src="assets/photo-03.jpg"/></div>
-<div class="slide"><img alt="라온채 한옥 전경" data-image-slot="assets/photo-17.jpg" decoding="async" loading="lazy" src="assets/photo-17.jpg"/></div>
-<div class="slide"><img alt="라온채 거실" data-image-slot="assets/photo-21.jpg" decoding="async" loading="lazy" src="assets/photo-21.jpg"/></div>
-</div>
-
-<div class="counter"><button aria-label="이전 사진" class="arrow" id="prev">‹</button><span id="count">01 — 05</span><div class="dots" id="dots"></div><button aria-label="다음 사진" class="arrow" id="next">›</button><button aria-label="자동 슬라이드 일시정지" aria-pressed="false" class="play-toggle" id="playToggle" type="button"><span aria-hidden="true">Ⅱ</span><span class="play-label">멈춤</span></button></div>
+</div><button aria-label="다음 사진" class="arrow" id="next">›</button><button aria-label="자동 슬라이드 일시정지" aria-pressed="false" class="play-toggle" id="playToggle" type="button"><span aria-hidden="true">Ⅱ</span><span class="play-label">멈춤</span></button></div>
 </section>
 <div class="hero-copy"><h2 data-setting="heroTitle">머무름이 특별해지는 한옥 스테이</h2><p data-setting="heroSubtitle">도심 가까이에서 만나는 고요한 쉼<br/>온전히 우리만을 위한 프라이빗 한옥</p></div>
 <section class="section" id="space">
@@ -193,26 +187,6 @@ body.opening-active{overflow:hidden}
 <symbol id="i-baby" viewbox="0 0 48 48"><circle cx="24" cy="21" r="11"></circle><path d="M13 21H7m34 0h-6M18 19h1m10 0h1M20 27c2 2 6 2 8 0M18 10c2-5 10-6 13-1"></path></symbol>
 </defs></svg>
 <script>
-const slides=[...document.querySelectorAll('.slide')],dots=document.getElementById('dots'),count=document.getElementById('count'),slidesWrap=document.getElementById('slides'),playToggle=document.getElementById('playToggle');
-let current=0,timer=null,isPlaying=true,startX=0,startY=0,dragging=false;
-const intervalMs=5000;
-slides.forEach((_,i)=>{const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label',`${i+1}번 사진`);b.addEventListener('click',()=>{show(i);restartAuto()});dots.appendChild(b)});
-function updatePlayButton(){playToggle.setAttribute('aria-pressed',String(!isPlaying));playToggle.setAttribute('aria-label',isPlaying?'자동 슬라이드 일시정지':'자동 슬라이드 다시 재생');playToggle.querySelector('span[aria-hidden]').textContent=isPlaying?'Ⅱ':'▶';playToggle.querySelector('.play-label').textContent=isPlaying?'멈춤':'재생'}
-function stopAuto(){clearInterval(timer);timer=null}
-function startAuto(){stopAuto();if(isPlaying)timer=setInterval(()=>show(current+1),intervalMs)}
-function restartAuto(){if(isPlaying)startAuto()}
-function show(i){slides[current].classList.remove('active');dots.children[current].classList.remove('active');current=(i+slides.length)%slides.length;slides[current].classList.add('active');dots.children[current].classList.add('active');count.textContent=String(current+1).padStart(2,'0')+' — '+String(slides.length).padStart(2,'0')}
-function next(){show(current+1);restartAuto()}
-function prev(){show(current-1);restartAuto()}
-document.getElementById('prev').addEventListener('click',prev);document.getElementById('next').addEventListener('click',next);
-playToggle.addEventListener('click',()=>{isPlaying=!isPlaying;updatePlayButton();isPlaying?startAuto():stopAuto()});
-slidesWrap.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;startX=e.clientX;startY=e.clientY;dragging=true;slidesWrap.classList.add('dragging');slidesWrap.setPointerCapture?.(e.pointerId)});
-slidesWrap.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;slidesWrap.classList.remove('dragging');const dx=e.clientX-startX,dy=e.clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){dx<0?next():prev()}});
-slidesWrap.addEventListener('pointercancel',()=>{dragging=false;slidesWrap.classList.remove('dragging')});
-slidesWrap.addEventListener('dragstart',e=>e.preventDefault());
-document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')prev();if(e.key==='ArrowRight')next()});
-startAuto();updatePlayButton();
-document.addEventListener('visibilitychange',()=>{if(document.hidden){stopAuto()}else if(isPlaying){startAuto()}});
 const navLinks=[...document.querySelectorAll('.nav a')],sections=[...document.querySelectorAll('main section[id]')];const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>{const active=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('active',active);active?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')})}})},{rootMargin:'-35% 0px -55% 0px'});sections.forEach(s=>io.observe(s));
 const reveal=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));
 const lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');document.querySelectorAll('[data-lightbox]').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lbImg.alt=img.alt;lb.classList.add('open')}));lb.querySelector('button').onclick=()=>lb.classList.remove('open');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
@@ -269,49 +243,35 @@ const lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');docum
 })();
 </script></body></html>
 <style id="final-slide-background-fix">
-/* 최종 요청: 사진은 자르지 않고, 남는 여백은 홈페이지 배경색과 동일하게 */
+/* 메인 사진 1장: 원본은 자르지 않고 가로만 조금 넓게 */
 .hero,
 .slides,
 .slide {
   background: #fffdf9 !important;
 }
 .slide img {
-  width: 100% !important;
+  width: 92% !important;
   height: 100% !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   object-fit: contain !important;
   object-position: center center !important;
   background: #fffdf9 !important;
+  transform: scaleX(1.18) !important;
+  transform-origin: center center !important;
 }
 .slide::after {
   background: none !important;
 }
+.counter {
+  display: none !important;
+}
 @media (max-width: 720px) {
   .slide img {
-    width: 100% !important;
+    width: 92% !important;
     object-fit: contain !important;
+    transform: scaleX(1.08) !important;
     background: #fffdf9 !important;
   }
 }
 </style>
 
-<style id="slide-controls-visibility">
-/* 메인 슬라이드 조작부 가독성 개선 */
-.counter { color: #5f4938 !important; }
-.arrow {
-  border-color: #7a604a !important;
-  background: rgba(255,253,249,.92) !important;
-  color: #5f4938 !important;
-  box-shadow: 0 2px 8px rgba(70,52,38,.15);
-}
-.arrow:hover { background: #6f5540 !important; color: #fff !important; }
-.dot { border-color: #8a715c !important; background: rgba(255,253,249,.88) !important; }
-.dot.active { background: #6f5540 !important; border-color: #6f5540 !important; transform: scale(1.25); }
-.play-toggle {
-  border-color: #7a604a !important;
-  background: rgba(255,253,249,.92) !important;
-  color: #5f4938 !important;
-  box-shadow: 0 2px 8px rgba(70,52,38,.15);
-}
-.play-toggle:hover { background: #6f5540 !important; color: #fff !important; }
-</style>
