@@ -2,9 +2,9 @@
   "bodyFont": "noto",
   "titleFont": "gungseo",
   "popup": {
-    "enabled": false,
+    "enabled": true,
     "title": "테스트 팝업",
-    "text": "",
+    "text": "테스트",
     "linkText": "예약하기",
     "linkUrl": ""
   },
@@ -227,10 +227,10 @@
     "capacity": "2명 / 8명",
     "checkTime": "15:00 / 11:00",
     "extraPerson": "1인 30,000원",
+    "bbqPrice": "30,000원",
     "pool32": "100,000원",
     "pool35": "130,000원",
     "poolTime": "예약 시 안내",
-    "bbqPrice": "30,000원",
     "refundPolicy": "네이버 예약과 동일"
   }
 }
