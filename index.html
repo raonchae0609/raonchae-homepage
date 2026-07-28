@@ -149,7 +149,11 @@ body.opening-active{overflow:hidden}
 <section class="section booking" id="booking">
 <div class="section-head reveal"><div><div class="eyebrow">RESERVATION</div><h2>예약</h2></div><p class="section-lead">요금과 이용안내를 확인한 뒤 네이버 예약 또는 전화 예약을 이용해 주세요.</p></div>
 <div class="price-grid reveal"><div class="price-card"><h3>숙박 요금</h3><div class="price-row"><span>비수기 평일</span><strong data-setting="weekdayPrice">270,000원</strong></div><div class="price-row"><span>비수기 금요일 · 토요일</span><strong data-setting="weekendPrice">330,000원</strong></div></div><div class="price-card"><h3>인원 및 시간</h3><div class="price-row"><span>기준 / 최대 인원</span><strong data-setting="capacity">2명 / 8명</strong></div><div class="price-row"><span>입실 / 퇴실</span><strong data-setting="checkTime">15:00 / 11:00</strong></div><div class="price-row"><span>인원 추가</span><strong data-setting="extraPerson">1인 30,000원</strong></div></div><div class="price-card"><h3>온수 수영장</h3><div class="price-row"><span>32℃ 온수</span><strong data-setting="pool32">100,000원</strong></div><div class="price-row"><span>35℃ 온수</span><strong data-setting="pool35">130,000원</strong></div><div class="price-row"><span>이용 시간</span><strong data-setting="poolTime">예약 시 안내</strong></div></div><div class="price-card"><h3>바베큐 및 환불</h3><div class="price-row"><span>바베큐</span><strong data-setting="bbqPrice">30,000원</strong></div><div class="price-row"><span>환불 규정</span><strong data-setting="refundPolicy">네이버 예약과 동일</strong></div></div></div>
-<div class="book-actions reveal"><a href="https://map.naver.com/p/entry/place/1041129855" rel="noopener" target="_blank">네이버 예약</a><a href="tel:01022240048">전화 예약</a></div><p class="notice">성수기 및 공휴일 요금과 상세 환불 규정은 네이버 예약 페이지에서 확인해 주세요.</p>
+<div class="book-actions reveal"><a class="naver-reserve-link"
+   href="https://map.naver.com/p/entry/place/1041129855"
+   data-mobile-href="https://pcmap.place.naver.com/accommodation/1041129855/room"
+   rel="noopener"
+   target="_blank">네이버 예약</a><a href="tel:01022240048">전화 예약</a></div><p class="notice">성수기 및 공휴일 요금과 상세 환불 규정은 네이버 예약 페이지에서 확인해 주세요.</p>
 </section>
 <section class="section" id="location">
 <div class="section-head reveal"><div><div class="eyebrow">LOCATION</div><h2>오시는 길</h2></div><p class="section-lead">아산 탕정에 자리한 프라이빗 한옥 스테이 라온채입니다.</p></div>
@@ -276,7 +280,22 @@ const lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');docum
   }
   }catch(e){console.warn('사이트 설정을 불러오지 못했습니다.',e)}
 })();
-</script></body></html>
+</script></script>
+
+<script>
+(function () {
+  const isMobile =
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
+  if (!isMobile) return;
+
+  document.querySelectorAll(".naver-reserve-link").forEach(function (link) {
+    link.href = link.dataset.mobileHref;
+  });
+})();
+</script>
+
+</body></html>
 <style id="final-slide-background-fix">
 /* 메인 사진 1장: 원본은 자르지 않고 가로만 조금 넓게 */
 .hero,
